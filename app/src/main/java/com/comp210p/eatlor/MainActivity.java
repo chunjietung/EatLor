@@ -17,16 +17,16 @@ import java.util.Comparator;
 
 public class MainActivity extends AppCompatActivity {
 
-    private EditText editText;
-    private Button addButton;
-    private Button sortButton;
-    private Button hitButton;
-    private ListView listView;
-    private ArrayList<String> listFoodChoices;
-    private FoodListAdapter adapter;
-    private Context context;
-    private View view;
-    private String passResult;
+    EditText editText;
+    Button addButton;
+    Button sortButton;
+    Button hitButton;
+    ListView listView;
+    ArrayList<String> listFoodChoices;
+    FoodListAdapter adapter;
+    Context context;
+    View view;
+    String passResult;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,13 +71,11 @@ public class MainActivity extends AppCompatActivity {
                     listFoodChoices.add(editText.getText().toString());
                     adapter.notifyDataSetChanged();
                     editText.setText("");
-                    try{
+                    try {
                         InputMethodManager inputManager = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
                         inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),0);
                     }
-                    catch (Exception e){
-
-                    }
+                    catch (Exception e){ }
                     editText.setCursorVisible(false);
                 }
             }
@@ -118,12 +116,12 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private String randomFood(ArrayList<String> a){
+    private String randomFood(ArrayList<String> a) {
         int number = (int) (Math.random() * a.size());
         return a.get(number);
     }
 
-    private void onResult(View view) {
+    public void onResult(View view) {
         Intent intent = new Intent(this, ReceiveResult.class);
         intent.putExtra("food", passResult);
         startActivity(intent);
