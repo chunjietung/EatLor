@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.Button;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -26,7 +25,6 @@ public class MainActivity extends AppCompatActivity {
     Context context;
     View view;
     String passResult;
-    //ArrayAdapter<String> adapter;
     MyCustomAdapter adapter;
 
     @Override
@@ -38,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         addButton = (Button) findViewById(R.id.addButton);
         listView = (ListView) findViewById(R.id.foodListView);
         listItems = new ArrayList<String>();
-        adapter = new MyCustomAdapter(MainActivity.this,R.layout.item,listItems);
+        adapter = new MyCustomAdapter(MainActivity.this,R.layout.list_layout,listItems);
         listView.setAdapter(adapter);
 
         editText.setOnClickListener(new View.OnClickListener() {

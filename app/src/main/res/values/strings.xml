@@ -4,4 +4,6 @@
     <string name="addButtonText">Add</string>
     <string name="hitMeText">Hit Me!</string>
     <string name="sortText">Alphabetical Order</string>
+    <string name="noFoodChoice">No food choice in the list.</string>
+    <string name="foodChoiceResultText">Here is your food choice:</string>
 </resources>

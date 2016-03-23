@@ -17,15 +17,22 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
         android:cursorVisible="false"
-        android:layout_toStartOf="@+id/addButton" />
+        android:layout_toStartOf="@+id/addButton"
+        android:background="#ffffff"
+        android:layout_above="@+id/foodListView"
+        android:layout_margin="4dp"
+        android:singleLine="true" />
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="70dp"
         android:layout_height="wrap_content"
         android:text="@string/addButtonText"
         android:id="@+id/addButton"
         android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignEnd="@+id/sortButton"
+        android:background="#ca314d"
+        android:textColor="#ffffff"
+        android:layout_margin="4dp" />
 
     <ListView
         android:layout_width="wrap_content"
@@ -34,7 +41,7 @@
         android:layout_toStartOf="@+id/addButton"
         android:layout_below="@+id/addButton"
         android:layout_alignEnd="@+id/addButton"
-        tools:listitem="@layout/item"
+        tools:listitem="@layout/list_layout"
         android:layout_above="@+id/sortButton" />
 
     <Button
@@ -43,7 +50,10 @@
         android:text="@string/sortText"
         android:id="@+id/sortButton"
         android:layout_above="@+id/hitButton"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:background="#2d18f1"
+        android:textColor="#ffffff"
+        android:layout_margin="6dp" />
 
     <Button
         android:layout_width="fill_parent"
@@ -51,6 +61,9 @@
         android:text="@string/hitMeText"
         android:id="@+id/hitButton"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:background="#8b32b5"
+        android:textColor="#ffffff"
+        android:layout_margin="6dp" />
 
 </RelativeLayout>

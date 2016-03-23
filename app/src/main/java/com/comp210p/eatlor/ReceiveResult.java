@@ -13,7 +13,7 @@ public class ReceiveResult extends AppCompatActivity {
         setContentView(R.layout.activity_receive_result);
         Intent intent = getIntent();
         String passResult = intent.getExtras().getString("new");
-        TextView resultView = (TextView) findViewById(R.id.resultView);
+        TextView resultView = (TextView) findViewById(R.id.resultTextView);
         resultView.setText(passResult);
     }
 }
