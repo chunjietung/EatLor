@@ -132,7 +132,6 @@ public class MainActivity extends AppCompatActivity {
                 passResult = randomFood(listItems);
                 onResult(view);
             }
-
         }
     };
 }
