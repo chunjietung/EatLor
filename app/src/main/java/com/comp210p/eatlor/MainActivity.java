@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
                                     dialog.cancel();
                                 }
                             })
-                            .setIcon(android.R.drawable.ic_dialog_alert)
+                            .setIcon(R.drawable.warning)
                             .show();
                     editText.setCursorVisible(false);
                 }
@@ -124,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
                                 dialog.dismiss();
                             }
                         })
-                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .setIcon(R.drawable.warning)
                         .show();
             }
 
