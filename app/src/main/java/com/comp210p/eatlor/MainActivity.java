@@ -16,16 +16,17 @@ import java.util.ArrayList;
 import java.util.Comparator;
 
 public class MainActivity extends AppCompatActivity {
-    EditText editText;
-    Button addButton;
-    Button sortButton;
-    Button hitButton;
-    ListView listView;
-    ArrayList<String> listItems;
-    Context context;
-    View view;
-    String passResult;
-    MyCustomAdapter adapter;
+
+    private EditText editText;
+    private Button addButton;
+    private Button sortButton;
+    private Button hitButton;
+    private ListView listView;
+    private ArrayList<String> listFoodChoices;
+    private FoodListAdapter adapter;
+    private Context context;
+    private View view;
+    private String passResult;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,10 +35,13 @@ public class MainActivity extends AppCompatActivity {
 
         editText = (EditText) findViewById(R.id.editText);
         addButton = (Button) findViewById(R.id.addButton);
+        sortButton = (Button) findViewById(R.id.sortButton);
+        hitButton = (Button) findViewById(R.id.hitButton);
         listView = (ListView) findViewById(R.id.foodListView);
-        listItems = new ArrayList<String>();
-        adapter = new MyCustomAdapter(MainActivity.this,R.layout.list_layout,listItems);
+        listFoodChoices = new ArrayList<String>();
+        adapter = new FoodListAdapter(MainActivity.this, R.layout.list_layout, listFoodChoices);
         listView.setAdapter(adapter);
+        context = this;
 
         editText.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
@@ -64,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
 
                 else
                 {
-                    listItems.add(editText.getText().toString());
+                    listFoodChoices.add(editText.getText().toString());
                     adapter.notifyDataSetChanged();
                     editText.setText("");
                     try{
@@ -79,59 +83,50 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        context = this;
+        sortButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                adapter.sort(new Comparator<String>() {
+                    @Override
+                    public int compare(String lhs, String rhs) {
+                        return lhs.compareTo(rhs);
+                    }
+                });
+                adapter.notifyDataSetChanged();
+            }
+        });
 
-        sortButton = (Button) findViewById(R.id.sortButton);
-        assert sortButton != null;
-        sortButton.setOnClickListener(sortClickListener);
+        hitButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                if(listFoodChoices.size() <= 1) {
+                    new AlertDialog.Builder(context)
+                            .setTitle("Insufficient food choice")
+                            .setMessage("Required at least 2 food choices to random")
+                            .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                }
+                            })
+                            .setIcon(R.drawable.warning)
+                            .show();
+                }
 
-        hitButton = (Button) findViewById(R.id.hitButton);
-        assert hitButton != null;
-        hitButton.setOnClickListener(hitClickListener);
+                else {
+                    passResult = randomFood(listFoodChoices);
+                    onResult(view);
+                }
+            }
+        });
     }
 
-    public String randomFood(ArrayList<String> a){
+    private String randomFood(ArrayList<String> a){
         int number = (int) (Math.random() * a.size());
         return a.get(number);
     }
 
-    public void onResult(View view) {
+    private void onResult(View view) {
         Intent intent = new Intent(this, ReceiveResult.class);
-        intent.putExtra("new", passResult);
+        intent.putExtra("food", passResult);
         startActivity(intent);
     }
 
-    private final View.OnClickListener sortClickListener = new View.OnClickListener() {
-        public void onClick(View v) {
-            adapter.sort(new Comparator<String>() {
-                @Override
-                public int compare(String lhs, String rhs) {
-                    return lhs.compareTo(rhs);
-                }
-            });
-            adapter.notifyDataSetChanged();
-        }
-    };
-
-    private final View.OnClickListener hitClickListener = new View.OnClickListener() {
-        public void onClick(View v) {
-            if(listItems.size() <= 1) {
-                new AlertDialog.Builder(context)
-                        .setTitle("Insufficient food choice")
-                        .setMessage("Required at least 2 food choices to random")
-                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.dismiss();
-                            }
-                        })
-                        .setIcon(R.drawable.warning)
-                        .show();
-            }
-
-            else {
-                passResult = randomFood(listItems);
-                onResult(view);
-            }
-        }
-    };
 }

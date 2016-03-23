@@ -12,8 +12,9 @@ public class ReceiveResult extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_receive_result);
         Intent intent = getIntent();
-        String passResult = intent.getExtras().getString("new");
+        String passResult = intent.getExtras().getString("food");
         TextView resultView = (TextView) findViewById(R.id.resultTextView);
         resultView.setText(passResult);
     }
+
 }

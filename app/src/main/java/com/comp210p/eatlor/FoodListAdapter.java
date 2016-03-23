@@ -13,13 +13,12 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+public class FoodListAdapter extends ArrayAdapter implements ListAdapter {
+    private ArrayList<String> list = new ArrayList<String>();
+    private Context context;
+    private int layoutResourceId;
 
-public class MyCustomAdapter extends ArrayAdapter implements ListAdapter {
-    public ArrayList<String> list = new ArrayList<String>();
-    public Context context;
-    public int layoutResourceId;
-
-    public MyCustomAdapter(Context context, int layoutResourceId, ArrayList<String> list) {
+    public FoodListAdapter(Context context, int layoutResourceId, ArrayList<String> list) {
         super(context, layoutResourceId, list);
         this.layoutResourceId = layoutResourceId;
         this.list = list;
@@ -35,13 +34,13 @@ public class MyCustomAdapter extends ArrayAdapter implements ListAdapter {
         }
 
         //Handle TextView and display string from your list
-        TextView listItemText = (TextView)view.findViewById(R.id.foodStringView);
+        TextView listItemText = (TextView) view.findViewById(R.id.foodStringView);
         listItemText.setText(list.get(position));
 
         //Handle buttons and add onClickListeners
-        ImageButton deleteBtn = (ImageButton)view.findViewById(R.id.deleteButton);
+        ImageButton deleteButton = (ImageButton)view.findViewById(R.id.deleteButton);
 
-        deleteBtn.setOnClickListener(new View.OnClickListener(){
+        deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 new AlertDialog.Builder(context)
@@ -55,12 +54,11 @@ public class MyCustomAdapter extends ArrayAdapter implements ListAdapter {
                         })
                         .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
-                                dialog.cancel();
+                                dialog.dismiss();
                             }
                         })
                         .setIcon(android.R.drawable.ic_delete)
                         .show();
-
             }
         });
         return view;
