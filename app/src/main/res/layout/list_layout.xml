@@ -25,7 +25,6 @@
         android:layout_centerVertical="true"
         android:layout_marginRight="5dp"
         android:src="@android:drawable/ic_menu_delete"
-        android:elevation="4sp"
-        android:contentDescription="@string/delete" />
+        android:elevation="4sp" />
 
 </RelativeLayout>
