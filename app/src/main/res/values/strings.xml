@@ -6,4 +6,5 @@
     <string name="sortText">Alphabetical Order</string>
     <string name="noFoodChoice">No food choice in the list.</string>
     <string name="foodChoiceResultText">Here is your food choice:</string>
+    <string name="delete">delete</string>
 </resources>
