@@ -1,3 +1,5 @@
+//MainActivity.java
+//Random a food choice
 package com.comp210p.eatlor;
 
 import android.app.AlertDialog;
